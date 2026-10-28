@@ -1,0 +1,46 @@
+Crop,Horizon,Model,RMSE,MAE,MAPE (%),ME,RRMSE (vs Naive)
+Potato,7d,Naive Baseline,148.58,101.23,8.02,8.47,1.0
+Potato,7d,Random Forest,146.21,103.16,8.29,5.84,0.984
+Potato,7d,XGBoost,145.31,102.33,8.25,10.79,0.9779
+Potato,7d,LightGBM,143.68,101.71,8.21,11.23,0.967
+Potato,7d,Stacking Ensemble,156.43,116.74,9.47,-3.53,1.0528
+Potato,14d,Naive Baseline,192.29,129.51,10.32,13.8,1.0
+Potato,14d,Random Forest,172.3,121.97,9.8,6.3,0.8961
+Potato,14d,XGBoost,171.13,120.01,9.6,1.89,0.89
+Potato,14d,LightGBM,176.96,123.0,9.93,8.52,0.9203
+Potato,14d,Stacking Ensemble,187.68,136.19,11.05,10.24,0.976
+Potato,30d,Naive Baseline,250.71,179.1,14.47,27.46,1.0
+Potato,30d,Random Forest,205.45,155.22,12.59,8.91,0.8195
+Potato,30d,XGBoost,199.22,151.49,12.13,1.11,0.7946
+Potato,30d,LightGBM,194.46,147.03,11.85,10.34,0.7756
+Potato,30d,Stacking Ensemble,217.61,162.09,13.0,-7.24,0.868
+Tomato,7d,Naive Baseline,420.32,291.53,19.2,19.13,1.0
+Tomato,7d,Random Forest,420.92,310.45,19.49,-48.63,1.0014
+Tomato,7d,XGBoost,420.94,310.01,19.37,-55.23,1.0015
+Tomato,7d,LightGBM,430.36,313.54,19.59,-41.49,1.0239
+Tomato,7d,Stacking Ensemble,410.4,296.47,18.72,-34.21,0.9764
+Tomato,14d,Naive Baseline,492.24,349.04,23.01,44.13,1.0
+Tomato,14d,Random Forest,535.55,366.49,21.64,-150.91,1.088
+Tomato,14d,XGBoost,550.75,373.45,22.07,-134.41,1.1189
+Tomato,14d,LightGBM,558.45,377.37,22.46,-119.92,1.1345
+Tomato,14d,Stacking Ensemble,536.11,369.0,21.86,-115.5,1.0891
+Tomato,30d,Naive Baseline,693.4,514.21,35.04,68.03,1.0
+Tomato,30d,Random Forest,623.03,467.99,28.47,-154.04,0.8985
+Tomato,30d,XGBoost,620.56,469.83,28.93,-151.18,0.895
+Tomato,30d,LightGBM,629.79,475.18,29.05,-153.3,0.9083
+Tomato,30d,Stacking Ensemble,587.01,432.54,25.56,-185.91,0.8466
+Onion,7d,Naive Baseline,647.78,150.68,11.4,-18.99,1.0
+Onion,7d,Random Forest,473.29,139.87,10.15,-22.35,0.7306
+Onion,7d,XGBoost,470.07,137.22,10.01,-20.3,0.7257
+Onion,7d,LightGBM,468.3,133.46,9.63,-21.75,0.7229
+Onion,7d,Stacking Ensemble,472.36,134.76,9.62,-55.08,0.7292
+Onion,14d,Naive Baseline,660.63,190.71,14.36,-35.52,1.0
+Onion,14d,Random Forest,490.53,181.38,13.46,0.16,0.7425
+Onion,14d,XGBoost,486.21,173.01,12.93,-9.46,0.736
+Onion,14d,LightGBM,483.86,165.56,12.21,-18.67,0.7324
+Onion,14d,Stacking Ensemble,493.19,178.57,13.04,-45.35,0.7465
+Onion,30d,Naive Baseline,684.91,262.16,20.23,-66.8,1.0
+Onion,30d,Random Forest,631.73,330.85,26.24,87.41,0.9224
+Onion,30d,XGBoost,566.7,282.85,21.67,44.13,0.8274
+Onion,30d,LightGBM,564.1,282.95,21.88,60.07,0.8236
+Onion,30d,Stacking Ensemble,568.36,294.65,22.89,5.84,0.8298

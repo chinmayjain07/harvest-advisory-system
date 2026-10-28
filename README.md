@@ -22,9 +22,22 @@ This repository implements the semester prototype of **"An Intelligent Harvest A
    - `src/weather_ingestion.py`: Pulls daily historical archive and forecast weather from Open-Meteo API.
    - `src/agmarknet_client.py`: Client for `data.gov.in` Mandi Price API (Resource ID: `9ef84268-d588-465a-a308-a864a43d0070`) with simulation replay fallback.
 
-## Execution
+## Phase 2: Price Prediction & Ensemble Modeling (Completed)
 
-Verify Phase 1:
-```bash
-python tests/verify_phase1.py
-```
+1. **Feature Engineering** (`src/feature_engineering.py`):
+   - 47 features constructed: Price lags (1, 2, 3, 7, 14, 21, 30), rolling statistical windows (mean, min, max, std over 7, 14, 30 days), momentum returns, Fourier sin/cos calendar seasonality, monsoon/winter flags, and meteorological risk metrics (7d/14d/30d rain sum, 7d temp, heat stress days, heavy rain days).
+
+2. **Model Training & Multi-Horizon Benchmarking** (`src/train_models.py`):
+   - Trained **Random Forest**, **XGBoost**, **LightGBM**, and a **Stacking Ensemble** (with RidgeCV meta-estimator) across **7-day**, **14-day**, and **30-day** forecasting horizons for all 3 crops.
+   - Evaluated chronologically on the held-out last 12 months using **RMSE**, **MAE**, **MAPE (%)**, **ME (bias)**, and **RRMSE** against the Naive baseline ($y_{t+h} = y_t$).
+
+3. **Key Findings**:
+   - **Onion**: LightGBM beats Naive baseline across all horizons, achieving **RRMSE of 0.7229** at 7 days (27.7% error reduction) and **0.7324** at 14 days (26.8% error reduction).
+   - **Potato**: Models decisively outperform the naive baseline at longer horizons: LightGBM achieves **RRMSE of 0.7756** (22.4% error reduction) at 30 days.
+   - **Tomato**: At 30 days, Stacking Ensemble achieves **RRMSE of 0.8466** (MAPE drops from 35.04% naive down to 25.56%).
+   - **SHAP Feature Attribution**: Native TreeSHAP identifies short-term momentum (`price_lag_1`, `price_roll_mean_7`), long-term seasonality (`cos_day`), and weather risk factors (`rain_30d_sum`, `temp_7d_mean`) as top drivers.
+
+## Verification
+
+- Phase 1: `python tests/verify_phase1.py`
+- Phase 2: `python tests/verify_phase2.py`

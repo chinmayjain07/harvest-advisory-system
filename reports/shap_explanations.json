@@ -1,0 +1,167 @@
+{
+  "Potato": {
+    "base_value": 1145.44,
+    "top_features": [
+      {
+        "feature": "price_roll_mean_7",
+        "mean_abs_shap": 133.775,
+        "correlation_with_target": 0.861
+      },
+      {
+        "feature": "price_lag_1",
+        "mean_abs_shap": 52.205,
+        "correlation_with_target": 0.869
+      },
+      {
+        "feature": "price_roll_mean_14",
+        "mean_abs_shap": 51.448,
+        "correlation_with_target": 0.839
+      },
+      {
+        "feature": "price_roll_min_14",
+        "mean_abs_shap": 26.871,
+        "correlation_with_target": 0.841
+      },
+      {
+        "feature": "price_lag_14",
+        "mean_abs_shap": 24.039,
+        "correlation_with_target": 0.734
+      },
+      {
+        "feature": "price_roll_min_7",
+        "mean_abs_shap": 18.907,
+        "correlation_with_target": 0.865
+      },
+      {
+        "feature": "price_roll_max_7",
+        "mean_abs_shap": 14.58,
+        "correlation_with_target": 0.838
+      },
+      {
+        "feature": "cos_day",
+        "mean_abs_shap": 12.521,
+        "correlation_with_target": 0.035
+      },
+      {
+        "feature": "price_lag_2",
+        "mean_abs_shap": 10.568,
+        "correlation_with_target": 0.858
+      },
+      {
+        "feature": "price_lag_21",
+        "mean_abs_shap": 10.43,
+        "correlation_with_target": 0.682
+      }
+    ]
+  },
+  "Tomato": {
+    "base_value": 1017.2,
+    "top_features": [
+      {
+        "feature": "price_lag_1",
+        "mean_abs_shap": 312.462,
+        "correlation_with_target": 0.655
+      },
+      {
+        "feature": "price_roll_min_7",
+        "mean_abs_shap": 61.724,
+        "correlation_with_target": 0.615
+      },
+      {
+        "feature": "price_roll_mean_7",
+        "mean_abs_shap": 46.409,
+        "correlation_with_target": 0.674
+      },
+      {
+        "feature": "price_lag_2",
+        "mean_abs_shap": 40.534,
+        "correlation_with_target": 0.652
+      },
+      {
+        "feature": "price_roll_min_14",
+        "mean_abs_shap": 28.506,
+        "correlation_with_target": 0.509
+      },
+      {
+        "feature": "cos_day",
+        "mean_abs_shap": 27.859,
+        "correlation_with_target": 0.077
+      },
+      {
+        "feature": "temp_7d_mean",
+        "mean_abs_shap": 27.188,
+        "correlation_with_target": -0.207
+      },
+      {
+        "feature": "temp_min",
+        "mean_abs_shap": 26.906,
+        "correlation_with_target": -0.31
+      },
+      {
+        "feature": "price_roll_mean_14",
+        "mean_abs_shap": 23.438,
+        "correlation_with_target": 0.607
+      },
+      {
+        "feature": "price_roll_max_7",
+        "mean_abs_shap": 23.009,
+        "correlation_with_target": 0.609
+      }
+    ]
+  },
+  "Onion": {
+    "base_value": 1101.35,
+    "top_features": [
+      {
+        "feature": "price_lag_1",
+        "mean_abs_shap": 105.574,
+        "correlation_with_target": 0.295
+      },
+      {
+        "feature": "price_roll_mean_7",
+        "mean_abs_shap": 45.896,
+        "correlation_with_target": 0.442
+      },
+      {
+        "feature": "price_lag_3",
+        "mean_abs_shap": 44.367,
+        "correlation_with_target": 0.284
+      },
+      {
+        "feature": "price_roll_min_14",
+        "mean_abs_shap": 27.306,
+        "correlation_with_target": 0.521
+      },
+      {
+        "feature": "price_roll_min_7",
+        "mean_abs_shap": 26.732,
+        "correlation_with_target": 0.528
+      },
+      {
+        "feature": "price_lag_2",
+        "mean_abs_shap": 24.69,
+        "correlation_with_target": 0.293
+      },
+      {
+        "feature": "rain_30d_sum",
+        "mean_abs_shap": 24.388,
+        "correlation_with_target": 0.321
+      },
+      {
+        "feature": "humidity_7d_mean",
+        "mean_abs_shap": 21.261,
+        "correlation_with_target": 0.32
+      },
+      {
+        "feature": "price_roll_mean_14",
+        "mean_abs_shap": 16.021,
+        "correlation_with_target": 0.466
+      },
+      {
+        "feature": "price_lag_30",
+        "mean_abs_shap": 11.377,
+        "correlation_with_target": 0.094
+      }
+    ]
+  }
+}

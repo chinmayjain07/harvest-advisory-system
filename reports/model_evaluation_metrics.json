@@ -1,0 +1,452 @@
+[
+  {
+    "Crop": "Potato",
+    "Horizon": "7d",
+    "Model": "Naive Baseline",
+    "RMSE": 148.58,
+    "MAE": 101.23,
+    "MAPE (%)": 8.02,
+    "ME": 8.47,
+    "RRMSE (vs Naive)": 1.0
+  },
+  {
+    "Crop": "Potato",
+    "Horizon": "7d",
+    "Model": "Random Forest",
+    "RMSE": 146.21,
+    "MAE": 103.16,
+    "MAPE (%)": 8.29,
+    "ME": 5.84,
+    "RRMSE (vs Naive)": 0.984
+  },
+  {
+    "Crop": "Potato",
+    "Horizon": "7d",
+    "Model": "XGBoost",
+    "RMSE": 145.31,
+    "MAE": 102.33,
+    "MAPE (%)": 8.25,
+    "ME": 10.79,
+    "RRMSE (vs Naive)": 0.9779
+  },
+  {
+    "Crop": "Potato",
+    "Horizon": "7d",
+    "Model": "LightGBM",
+    "RMSE": 143.68,
+    "MAE": 101.71,
+    "MAPE (%)": 8.21,
+    "ME": 11.23,
+    "RRMSE (vs Naive)": 0.967
+  },
+  {
+    "Crop": "Potato",
+    "Horizon": "7d",
+    "Model": "Stacking Ensemble",
+    "RMSE": 156.43,
+    "MAE": 116.74,
+    "MAPE (%)": 9.47,
+    "ME": -3.53,
+    "RRMSE (vs Naive)": 1.0528
+  },
+  {
+    "Crop": "Potato",
+    "Horizon": "14d",
+    "Model": "Naive Baseline",
+    "RMSE": 192.29,
+    "MAE": 129.51,
+    "MAPE (%)": 10.32,
+    "ME": 13.8,
+    "RRMSE (vs Naive)": 1.0
+  },
+  {
+    "Crop": "Potato",
+    "Horizon": "14d",
+    "Model": "Random Forest",
+    "RMSE": 172.3,
+    "MAE": 121.97,
+    "MAPE (%)": 9.8,
+    "ME": 6.3,
+    "RRMSE (vs Naive)": 0.8961
+  },
+  {
+    "Crop": "Potato",
+    "Horizon": "14d",
+    "Model": "XGBoost",
+    "RMSE": 171.13,
+    "MAE": 120.01,
+    "MAPE (%)": 9.6,
+    "ME": 1.89,
+    "RRMSE (vs Naive)": 0.89
+  },
+  {
+    "Crop": "Potato",
+    "Horizon": "14d",
+    "Model": "LightGBM",
+    "RMSE": 176.96,
+    "MAE": 123.0,
+    "MAPE (%)": 9.93,
+    "ME": 8.52,
+    "RRMSE (vs Naive)": 0.9203
+  },
+  {
+    "Crop": "Potato",
+    "Horizon": "14d",
+    "Model": "Stacking Ensemble",
+    "RMSE": 187.68,
+    "MAE": 136.19,
+    "MAPE (%)": 11.05,
+    "ME": 10.24,
+    "RRMSE (vs Naive)": 0.976
+  },
+  {
+    "Crop": "Potato",
+    "Horizon": "30d",
+    "Model": "Naive Baseline",
+    "RMSE": 250.71,
+    "MAE": 179.1,
+    "MAPE (%)": 14.47,
+    "ME": 27.46,
+    "RRMSE (vs Naive)": 1.0
+  },
+  {
+    "Crop": "Potato",
+    "Horizon": "30d",
+    "Model": "Random Forest",
+    "RMSE": 205.45,
+    "MAE": 155.22,
+    "MAPE (%)": 12.59,
+    "ME": 8.91,
+    "RRMSE (vs Naive)": 0.8195
+  },
+  {
+    "Crop": "Potato",
+    "Horizon": "30d",
+    "Model": "XGBoost",
+    "RMSE": 199.22,
+    "MAE": 151.49,
+    "MAPE (%)": 12.13,
+    "ME": 1.11,
+    "RRMSE (vs Naive)": 0.7946
+  },
+  {
+    "Crop": "Potato",
+    "Horizon": "30d",
+    "Model": "LightGBM",
+    "RMSE": 194.46,
+    "MAE": 147.03,
+    "MAPE (%)": 11.85,
+    "ME": 10.34,
+    "RRMSE (vs Naive)": 0.7756
+  },
+  {
+    "Crop": "Potato",
+    "Horizon": "30d",
+    "Model": "Stacking Ensemble",
+    "RMSE": 217.61,
+    "MAE": 162.09,
+    "MAPE (%)": 13.0,
+    "ME": -7.24,
+    "RRMSE (vs Naive)": 0.868
+  },
+  {
+    "Crop": "Tomato",
+    "Horizon": "7d",
+    "Model": "Naive Baseline",
+    "RMSE": 420.32,
+    "MAE": 291.53,
+    "MAPE (%)": 19.2,
+    "ME": 19.13,
+    "RRMSE (vs Naive)": 1.0
+  },
+  {
+    "Crop": "Tomato",
+    "Horizon": "7d",
+    "Model": "Random Forest",
+    "RMSE": 420.92,
+    "MAE": 310.45,
+    "MAPE (%)": 19.49,
+    "ME": -48.63,
+    "RRMSE (vs Naive)": 1.0014
+  },
+  {
+    "Crop": "Tomato",
+    "Horizon": "7d",
+    "Model": "XGBoost",
+    "RMSE": 420.94,
+    "MAE": 310.01,
+    "MAPE (%)": 19.37,
+    "ME": -55.23,
+    "RRMSE (vs Naive)": 1.0015
+  },
+  {
+    "Crop": "Tomato",
+    "Horizon": "7d",
+    "Model": "LightGBM",
+    "RMSE": 430.36,
+    "MAE": 313.54,
+    "MAPE (%)": 19.59,
+    "ME": -41.49,
+    "RRMSE (vs Naive)": 1.0239
+  },
+  {
+    "Crop": "Tomato",
+    "Horizon": "7d",
+    "Model": "Stacking Ensemble",
+    "RMSE": 410.4,
+    "MAE": 296.47,
+    "MAPE (%)": 18.72,
+    "ME": -34.21,
+    "RRMSE (vs Naive)": 0.9764
+  },
+  {
+    "Crop": "Tomato",
+    "Horizon": "14d",
+    "Model": "Naive Baseline",
+    "RMSE": 492.24,
+    "MAE": 349.04,
+    "MAPE (%)": 23.01,
+    "ME": 44.13,
+    "RRMSE (vs Naive)": 1.0
+  },
+  {
+    "Crop": "Tomato",
+    "Horizon": "14d",
+    "Model": "Random Forest",
+    "RMSE": 535.55,
+    "MAE": 366.49,
+    "MAPE (%)": 21.64,
+    "ME": -150.91,
+    "RRMSE (vs Naive)": 1.088
+  },
+  {
+    "Crop": "Tomato",
+    "Horizon": "14d",
+    "Model": "XGBoost",
+    "RMSE": 550.75,
+    "MAE": 373.45,
+    "MAPE (%)": 22.07,
+    "ME": -134.41,
+    "RRMSE (vs Naive)": 1.1189
+  },
+  {
+    "Crop": "Tomato",
+    "Horizon": "14d",
+    "Model": "LightGBM",
+    "RMSE": 558.45,
+    "MAE": 377.37,
+    "MAPE (%)": 22.46,
+    "ME": -119.92,
+    "RRMSE (vs Naive)": 1.1345
+  },
+  {
+    "Crop": "Tomato",
+    "Horizon": "14d",
+    "Model": "Stacking Ensemble",
+    "RMSE": 536.11,
+    "MAE": 369.0,
+    "MAPE (%)": 21.86,
+    "ME": -115.5,
+    "RRMSE (vs Naive)": 1.0891
+  },
+  {
+    "Crop": "Tomato",
+    "Horizon": "30d",
+    "Model": "Naive Baseline",
+    "RMSE": 693.4,
+    "MAE": 514.21,
+    "MAPE (%)": 35.04,
+    "ME": 68.03,
+    "RRMSE (vs Naive)": 1.0
+  },
+  {
+    "Crop": "Tomato",
+    "Horizon": "30d",
+    "Model": "Random Forest",
+    "RMSE": 623.03,
+    "MAE": 467.99,
+    "MAPE (%)": 28.47,
+    "ME": -154.04,
+    "RRMSE (vs Naive)": 0.8985
+  },
+  {
+    "Crop": "Tomato",
+    "Horizon": "30d",
+    "Model": "XGBoost",
+    "RMSE": 620.56,
+    "MAE": 469.83,
+    "MAPE (%)": 28.93,
+    "ME": -151.18,
+    "RRMSE (vs Naive)": 0.895
+  },
+  {
+    "Crop": "Tomato",
+    "Horizon": "30d",
+    "Model": "LightGBM",
+    "RMSE": 629.79,
+    "MAE": 475.18,
+    "MAPE (%)": 29.05,
+    "ME": -153.3,
+    "RRMSE (vs Naive)": 0.9083
+  },
+  {
+    "Crop": "Tomato",
+    "Horizon": "30d",
+    "Model": "Stacking Ensemble",
+    "RMSE": 587.01,
+    "MAE": 432.54,
+    "MAPE (%)": 25.56,
+    "ME": -185.91,
+    "RRMSE (vs Naive)": 0.8466
+  },
+  {
+    "Crop": "Onion",
+    "Horizon": "7d",
+    "Model": "Naive Baseline",
+    "RMSE": 647.78,
+    "MAE": 150.68,
+    "MAPE (%)": 11.4,
+    "ME": -18.99,
+    "RRMSE (vs Naive)": 1.0
+  },
+  {
+    "Crop": "Onion",
+    "Horizon": "7d",
+    "Model": "Random Forest",
+    "RMSE": 473.29,
+    "MAE": 139.87,
+    "MAPE (%)": 10.15,
+    "ME": -22.35,
+    "RRMSE (vs Naive)": 0.7306
+  },
+  {
+    "Crop": "Onion",
+    "Horizon": "7d",
+    "Model": "XGBoost",
+    "RMSE": 470.07,
+    "MAE": 137.22,
+    "MAPE (%)": 10.01,
+    "ME": -20.3,
+    "RRMSE (vs Naive)": 0.7257
+  },
+  {
+    "Crop": "Onion",
+    "Horizon": "7d",
+    "Model": "LightGBM",
+    "RMSE": 468.3,
+    "MAE": 133.46,
+    "MAPE (%)": 9.63,
+    "ME": -21.75,
+    "RRMSE (vs Naive)": 0.7229
+  },
+  {
+    "Crop": "Onion",
+    "Horizon": "7d",
+    "Model": "Stacking Ensemble",
+    "RMSE": 472.36,
+    "MAE": 134.76,
+    "MAPE (%)": 9.62,
+    "ME": -55.08,
+    "RRMSE (vs Naive)": 0.7292
+  },
+  {
+    "Crop": "Onion",
+    "Horizon": "14d",
+    "Model": "Naive Baseline",
+    "RMSE": 660.63,
+    "MAE": 190.71,
+    "MAPE (%)": 14.36,
+    "ME": -35.52,
+    "RRMSE (vs Naive)": 1.0
+  },
+  {
+    "Crop": "Onion",
+    "Horizon": "14d",
+    "Model": "Random Forest",
+    "RMSE": 490.53,
+    "MAE": 181.38,
+    "MAPE (%)": 13.46,
+    "ME": 0.16,
+    "RRMSE (vs Naive)": 0.7425
+  },
+  {
+    "Crop": "Onion",
+    "Horizon": "14d",
+    "Model": "XGBoost",
+    "RMSE": 486.21,
+    "MAE": 173.01,
+    "MAPE (%)": 12.93,
+    "ME": -9.46,
+    "RRMSE (vs Naive)": 0.736
+  },
+  {
+    "Crop": "Onion",
+    "Horizon": "14d",
+    "Model": "LightGBM",
+    "RMSE": 483.86,
+    "MAE": 165.56,
+    "MAPE (%)": 12.21,
+    "ME": -18.67,
+    "RRMSE (vs Naive)": 0.7324
+  },
+  {
+    "Crop": "Onion",
+    "Horizon": "14d",
+    "Model": "Stacking Ensemble",
+    "RMSE": 493.19,
+    "MAE": 178.57,
+    "MAPE (%)": 13.04,
+    "ME": -45.35,
+    "RRMSE (vs Naive)": 0.7465
+  },
+  {
+    "Crop": "Onion",
+    "Horizon": "30d",
+    "Model": "Naive Baseline",
+    "RMSE": 684.91,
+    "MAE": 262.16,
+    "MAPE (%)": 20.23,
+    "ME": -66.8,
+    "RRMSE (vs Naive)": 1.0
+  },
+  {
+    "Crop": "Onion",
+    "Horizon": "30d",
+    "Model": "Random Forest",
+    "RMSE": 631.73,
+    "MAE": 330.85,
+    "MAPE (%)": 26.24,
+    "ME": 87.41,
+    "RRMSE (vs Naive)": 0.9224
+  },
+  {
+    "Crop": "Onion",
+    "Horizon": "30d",
+    "Model": "XGBoost",
+    "RMSE": 566.7,
+    "MAE": 282.85,
+    "MAPE (%)": 21.67,
+    "ME": 44.13,
+    "RRMSE (vs Naive)": 0.8274
+  },
+  {
+    "Crop": "Onion",
+    "Horizon": "30d",
+    "Model": "LightGBM",
+    "RMSE": 564.1,
+    "MAE": 282.95,
+    "MAPE (%)": 21.88,
+    "ME": 60.07,
+    "RRMSE (vs Naive)": 0.8236
+  },
+  {
+    "Crop": "Onion",
+    "Horizon": "30d",
+    "Model": "Stacking Ensemble",
+    "RMSE": 568.36,
+    "MAE": 294.65,
+    "MAPE (%)": 22.89,
+    "ME": 5.84,
+    "RRMSE (vs Naive)": 0.8298
+  }
+]
