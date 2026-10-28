@@ -1,0 +1,351 @@
+{
+  "mode_a": {
+    "mode": "Crop Selection (Which Crop to Grow?)",
+    "farm_location": "Junnar",
+    "target_mandi": "Pune",
+    "weights_used": {
+      "net_price": 0.3,
+      "expected_yield": 0.25,
+      "suitability": 0.2,
+      "volatility": 0.15,
+      "weather_risk": 0.1
+    },
+    "rankings": [
+      {
+        "commodity": "Onion",
+        "topsis_score": 0.672,
+        "details": {
+          "commodity": "Onion",
+          "gross_mandi_price": 2200.0,
+          "net_farmgate_price": 1829.4,
+          "expected_yield_q_ha": 200.0,
+          "cultivation_cost_ha": 95000.0,
+          "expected_net_profit_ha": 270880.0,
+          "suitability_score": 0.986,
+          "price_volatility": 0.083,
+          "weather_risk_index": 0.18
+        },
+        "rank": 1
+      },
+      {
+        "commodity": "Tomato",
+        "topsis_score": 0.3673,
+        "details": {
+          "commodity": "Tomato",
+          "gross_mandi_price": 1300.0,
+          "net_farmgate_price": 983.85,
+          "expected_yield_q_ha": 320.0,
+          "cultivation_cost_ha": 185000.0,
+          "expected_net_profit_ha": 129832.0,
+          "suitability_score": 0.986,
+          "price_volatility": 0.148,
+          "weather_risk_index": 0.18
+        },
+        "rank": 2
+      },
+      {
+        "commodity": "Potato",
+        "topsis_score": 0.2743,
+        "details": {
+          "commodity": "Potato",
+          "gross_mandi_price": 1150.0,
+          "net_farmgate_price": 842.92,
+          "expected_yield_q_ha": 210.0,
+          "cultivation_cost_ha": 85000.0,
+          "expected_net_profit_ha": 92013.2,
+          "suitability_score": 0.881,
+          "price_volatility": 0.079,
+          "weather_risk_index": 0.18
+        },
+        "rank": 3
+      }
+    ]
+  },
+  "sensitivity": {
+    "yield_focused": {
+      "mode": "Crop Selection (Which Crop to Grow?)",
+      "farm_location": "Junnar",
+      "target_mandi": "Pune",
+      "weights_used": {
+        "net_price": 0.15,
+        "expected_yield": 0.6,
+        "suitability": 0.15,
+        "volatility": 0.05,
+        "weather_risk": 0.05
+      },
+      "rankings": [
+        {
+          "commodity": "Tomato",
+          "topsis_score": 0.7376,
+          "details": {
+            "commodity": "Tomato",
+            "gross_mandi_price": 1300.0,
+            "net_farmgate_price": 983.85,
+            "expected_yield_q_ha": 320.0,
+            "cultivation_cost_ha": 185000.0,
+            "expected_net_profit_ha": 129832.0,
+            "suitability_score": 0.986,
+            "price_volatility": 0.148,
+            "weather_risk_index": 0.18
+          },
+          "rank": 1
+        },
+        {
+          "commodity": "Onion",
+          "topsis_score": 0.2925,
+          "details": {
+            "commodity": "Onion",
+            "gross_mandi_price": 2200.0,
+            "net_farmgate_price": 1829.4,
+            "expected_yield_q_ha": 200.0,
+            "cultivation_cost_ha": 95000.0,
+            "expected_net_profit_ha": 270880.0,
+            "suitability_score": 0.986,
+            "price_volatility": 0.083,
+            "weather_risk_index": 0.18
+          },
+          "rank": 2
+        },
+        {
+          "commodity": "Potato",
+          "topsis_score": 0.1216,
+          "details": {
+            "commodity": "Potato",
+            "gross_mandi_price": 1150.0,
+            "net_farmgate_price": 842.92,
+            "expected_yield_q_ha": 210.0,
+            "cultivation_cost_ha": 85000.0,
+            "expected_net_profit_ha": 92013.2,
+            "suitability_score": 0.881,
+            "price_volatility": 0.079,
+            "weather_risk_index": 0.18
+          },
+          "rank": 3
+        }
+      ]
+    },
+    "risk_averse": {
+      "mode": "Crop Selection (Which Crop to Grow?)",
+      "farm_location": "Junnar",
+      "target_mandi": "Pune",
+      "weights_used": {
+        "net_price": 0.1,
+        "expected_yield": 0.1,
+        "suitability": 0.2,
+        "volatility": 0.3,
+        "weather_risk": 0.3
+      },
+      "rankings": [
+        {
+          "commodity": "Onion",
+          "topsis_score": 0.7996,
+          "details": {
+            "commodity": "Onion",
+            "gross_mandi_price": 2200.0,
+            "net_farmgate_price": 1829.4,
+            "expected_yield_q_ha": 200.0,
+            "cultivation_cost_ha": 95000.0,
+            "expected_net_profit_ha": 270880.0,
+            "suitability_score": 0.986,
+            "price_volatility": 0.083,
+            "weather_risk_index": 0.18
+          },
+          "rank": 1
+        },
+        {
+          "commodity": "Potato",
+          "topsis_score": 0.6785,
+          "details": {
+            "commodity": "Potato",
+            "gross_mandi_price": 1150.0,
+            "net_farmgate_price": 842.92,
+            "expected_yield_q_ha": 210.0,
+            "cultivation_cost_ha": 85000.0,
+            "expected_net_profit_ha": 92013.2,
+            "suitability_score": 0.881,
+            "price_volatility": 0.079,
+            "weather_risk_index": 0.18
+          },
+          "rank": 2
+        },
+        {
+          "commodity": "Tomato",
+          "topsis_score": 0.2108,
+          "details": {
+            "commodity": "Tomato",
+            "gross_mandi_price": 1300.0,
+            "net_farmgate_price": 983.85,
+            "expected_yield_q_ha": 320.0,
+            "cultivation_cost_ha": 185000.0,
+            "expected_net_profit_ha": 129832.0,
+            "suitability_score": 0.986,
+            "price_volatility": 0.148,
+            "weather_risk_index": 0.18
+          },
+          "rank": 3
+        }
+      ]
+    }
+  },
+  "mode_b": {
+    "Potato": {
+      "mode": "Sell Timing & Location Optimization for Potato",
+      "commodity": "Potato",
+      "weights_used": {
+        "net_price": 0.4,
+        "yield_realization": 0.25,
+        "market_convenience": 0.15,
+        "volatility": 0.1,
+        "weather_risk": 0.1
+      },
+      "rankings": [
+        {
+          "strategy": "Sell Today Locally (Junnar Mandi)",
+          "topsis_score": 1.0,
+          "net_price_realization": 953.1,
+          "yield_retention_pct": 100.0,
+          "convenience_score": 0.95,
+          "risk_uncertainty": 0.08,
+          "weather_spoilage_risk": 1.0,
+          "rank": 1
+        },
+        {
+          "strategy": "Sell Today (Pune APMC)",
+          "topsis_score": 0.6533,
+          "net_price_realization": 842.92,
+          "yield_retention_pct": 100.0,
+          "convenience_score": 0.7,
+          "risk_uncertainty": 0.1,
+          "weather_spoilage_risk": 2.0,
+          "rank": 2
+        },
+        {
+          "strategy": "Hold & Sell in +7 Days (Pune APMC)",
+          "topsis_score": 0.4594,
+          "net_price_realization": 886.14,
+          "yield_retention_pct": 99.0,
+          "convenience_score": 0.7,
+          "risk_uncertainty": 0.2,
+          "weather_spoilage_risk": 3.0,
+          "rank": 3
+        },
+        {
+          "strategy": "Hold & Sell in +14 Days (Pune APMC)",
+          "topsis_score": 0.1736,
+          "net_price_realization": 929.36,
+          "yield_retention_pct": 97.0,
+          "convenience_score": 0.7,
+          "risk_uncertainty": 0.35,
+          "weather_spoilage_risk": 4.5,
+          "rank": 4
+        }
+      ]
+    },
+    "Tomato": {
+      "mode": "Sell Timing & Location Optimization for Tomato",
+      "commodity": "Tomato",
+      "weights_used": {
+        "net_price": 0.4,
+        "yield_realization": 0.25,
+        "market_convenience": 0.15,
+        "volatility": 0.1,
+        "weather_risk": 0.1
+      },
+      "rankings": [
+        {
+          "strategy": "Sell Today Locally (Junnar Mandi)",
+          "topsis_score": 1.0,
+          "net_price_realization": 1085.57,
+          "yield_retention_pct": 100.0,
+          "convenience_score": 0.95,
+          "risk_uncertainty": 0.08,
+          "weather_spoilage_risk": 1.5,
+          "rank": 1
+        },
+        {
+          "strategy": "Sell Today (Pune APMC)",
+          "topsis_score": 0.6827,
+          "net_price_realization": 983.85,
+          "yield_retention_pct": 100.0,
+          "convenience_score": 0.7,
+          "risk_uncertainty": 0.1,
+          "weather_spoilage_risk": 3.0,
+          "rank": 2
+        },
+        {
+          "strategy": "Hold & Sell in +7 Days (Pune APMC)",
+          "topsis_score": 0.4458,
+          "net_price_realization": 1032.7,
+          "yield_retention_pct": 93.0,
+          "convenience_score": 0.7,
+          "risk_uncertainty": 0.2,
+          "weather_spoilage_risk": 5.0,
+          "rank": 3
+        },
+        {
+          "strategy": "Hold & Sell in +14 Days (Pune APMC)",
+          "topsis_score": 0.1671,
+          "net_price_realization": 1081.56,
+          "yield_retention_pct": 84.0,
+          "convenience_score": 0.7,
+          "risk_uncertainty": 0.35,
+          "weather_spoilage_risk": 7.0,
+          "rank": 4
+        }
+      ]
+    },
+    "Onion": {
+      "mode": "Sell Timing & Location Optimization for Onion",
+      "commodity": "Onion",
+      "weights_used": {
+        "net_price": 0.4,
+        "yield_realization": 0.25,
+        "market_convenience": 0.15,
+        "volatility": 0.1,
+        "weather_risk": 0.1
+      },
+      "rankings": [
+        {
+          "strategy": "Sell Today Locally (Junnar Mandi)",
+          "topsis_score": 0.8849,
+          "net_price_realization": 1880.39,
+          "yield_retention_pct": 100.0,
+          "convenience_score": 0.95,
+          "risk_uncertainty": 0.08,
+          "weather_spoilage_risk": 1.0,
+          "rank": 1
+        },
+        {
+          "strategy": "Sell Today (Pune APMC)",
+          "topsis_score": 0.6891,
+          "net_price_realization": 1829.4,
+          "yield_retention_pct": 100.0,
+          "convenience_score": 0.7,
+          "risk_uncertainty": 0.1,
+          "weather_spoilage_risk": 2.0,
+          "rank": 2
+        },
+        {
+          "strategy": "Hold & Sell in +7 Days (Pune APMC)",
+          "topsis_score": 0.4436,
+          "net_price_realization": 1912.08,
+          "yield_retention_pct": 98.0,
+          "convenience_score": 0.7,
+          "risk_uncertainty": 0.2,
+          "weather_spoilage_risk": 3.5,
+          "rank": 3
+        },
+        {
+          "strategy": "Hold & Sell in +14 Days (Pune APMC)",
+          "topsis_score": 0.1585,
+          "net_price_realization": 1994.75,
+          "yield_retention_pct": 95.0,
+          "convenience_score": 0.7,
+          "risk_uncertainty": 0.35,
+          "weather_spoilage_risk": 5.0,
+          "rank": 4
+        }
+      ]
+    }
+  }
+}

@@ -37,7 +37,23 @@ This repository implements the semester prototype of **"An Intelligent Harvest A
    - **Tomato**: At 30 days, Stacking Ensemble achieves **RRMSE of 0.8466** (MAPE drops from 35.04% naive down to 25.56%).
    - **SHAP Feature Attribution**: Native TreeSHAP identifies short-term momentum (`price_lag_1`, `price_roll_mean_7`), long-term seasonality (`cos_day`), and weather risk factors (`rain_30d_sum`, `temp_7d_mean`) as top drivers.
 
-## Verification
+## Phase 3: Net Price & MCDA Engine (Completed)
+
+1. **Net Farm-Gate Price Deduction Model** (`src/mcda_engine.py`):
+   - Formulated $P_{\text{net}} = P_{\text{pred}} - (\text{transport} + \text{mandi cess} + \text{commission} + \text{handling})$.
+   - Implemented dynamic calculation taking into account distance, freight rates, 1.05% APMC cess, 5.0% commission agent cut, and loading fees.
+
+2. **Agro-Climatic Suitability Scoring**:
+   - Implemented FAO EcoCrop thermal envelope scoring ($T_{\text{min\_abs}}$, $T_{\text{min\_opt}}$, $T_{\text{max\_opt}}$, $T_{\text{max\_abs}}$) and rainfall/blight penalties against real 14-day Open-Meteo forecasts.
+
+3. **TOPSIS Optimization Engine**:
+   - Implemented vector normalization, weighted normalized matrices, ideal positive/negative solutions, and relative closeness calculation ($C_i^*$).
+   - **Mode A (Which Crop to Grow?)**: Ranks Potato vs. Tomato vs. Onion on 5 criteria: Net Price, Expected Yield, Suitability, Price Volatility, and Weather Risk.
+   - **Mode B (When & Where to Sell?)**: Ranks Sell Today vs. +7 Days vs. +14 Days vs. Alternate Mandi, incorporating crop-specific perishability and spoilage rates.
+   - **Sensitivity Analysis**: Validated dynamic rank shifts under yield-maximizing vs. risk-averse weight scenarios.
+
+## Verification Suite
 
 - Phase 1: `python tests/verify_phase1.py`
 - Phase 2: `python tests/verify_phase2.py`
+- Phase 3: `python tests/verify_phase3.py`
