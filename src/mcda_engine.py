@@ -425,6 +425,62 @@ class HarvestMCDA:
             "rankings": rankings
         }
 
+    @classmethod
+    def rank_crops(cls, weights: Optional[Dict[str, float]] = None) -> pd.DataFrame:
+        """Helper for UI: Mode A Crop Selection Ranking returning a styled DataFrame."""
+        engine = cls() if isinstance(cls, type) else cls
+        w_mapped = {}
+        if weights:
+            w_mapped["net_price"] = weights.get("net_realization", weights.get("net_price", 0.30))
+            w_mapped["expected_yield"] = weights.get("expected_yield", 0.25)
+            w_mapped["suitability"] = weights.get("agro_suitability", weights.get("suitability", 0.20))
+            w_mapped["volatility"] = weights.get("price_volatility", weights.get("volatility", 0.15))
+            w_mapped["weather_risk"] = weights.get("weather_risk", 0.10)
+
+        eval_res = engine.evaluate_mode_a_crop_selection(weights=w_mapped)
+        rows = []
+        for r in eval_res["rankings"]:
+            d = r["details"]
+            rows.append({
+                "Rank": r["rank"],
+                "Crop": r["commodity"],
+                "TOPSIS Score": r["topsis_score"],
+                "Net Realization (Rs/q)": d["net_farmgate_price"],
+                "Expected Yield (q/ha)": d["expected_yield_q_ha"],
+                "Net Profit (Rs/ha)": d["expected_net_profit_ha"],
+                "Suitability Score": d["suitability_score"],
+                "Volatility Risk": d["price_volatility"],
+                "Weather Risk": d["weather_risk_index"]
+            })
+        return pd.DataFrame(rows)
+
+    @classmethod
+    def rank_sell_timing(cls, commodity: str = "Tomato", weights: Optional[Dict[str, float]] = None) -> pd.DataFrame:
+        """Helper for UI: Mode B Sell Timing & Market Arbitrage returning a styled DataFrame."""
+        engine = cls() if isinstance(cls, type) else cls
+        w_mapped = {}
+        if weights:
+            w_mapped["net_price"] = weights.get("expected_net_price", weights.get("net_price", 0.40))
+            w_mapped["yield_realization"] = weights.get("spoilage_risk", weights.get("yield_realization", 0.25))
+            w_mapped["market_convenience"] = weights.get("transport_convenience", weights.get("market_convenience", 0.15))
+            w_mapped["volatility"] = weights.get("storage_holding_cost", weights.get("volatility", 0.10))
+            w_mapped["weather_risk"] = weights.get("weather_risk", 0.10)
+
+        eval_res = engine.evaluate_mode_b_sell_timing(commodity=commodity, weights=w_mapped)
+        rows = []
+        for r in eval_res["rankings"]:
+            rows.append({
+                "Rank": r["rank"],
+                "Alternative": r["strategy"],
+                "TOPSIS Closeness Score": r["topsis_score"],
+                "Expected Net Price (Rs/q)": r["net_price_realization"],
+                "Yield Retention (%)": f"{r['yield_retention_pct']*100:.1f}%",
+                "Convenience Score": r["convenience_score"],
+                "Market Volatility": r["risk_uncertainty"],
+                "Weather Spoilage Risk": r["weather_spoilage_risk"]
+            })
+        return pd.DataFrame(rows)
+
 if __name__ == "__main__":
     mcda = HarvestMCDA()
     print("--- Mode A: Which Crop to Grow? ---")
