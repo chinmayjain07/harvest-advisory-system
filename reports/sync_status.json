@@ -2,6 +2,6 @@
   "status": "fallback",
   "records_added": 17,
   "source": "simulation",
-  "last_sync_timestamp": "2026-10-30T22:22:41.715969",
+  "last_sync_timestamp": "2026-10-30T22:37:43.836584",
   "details": "API unavailable (or key missing); gracefully advanced ReplayService simulation to Day 2 (2026-06-22) revealing 17 records."
 }

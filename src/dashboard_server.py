@@ -8,7 +8,8 @@ import io
 import json
 import os
 import sys
-import cgi
+from email.parser import BytesParser
+from email.policy import default
 from pathlib import Path
 from http.server import HTTPServer, BaseHTTPRequestHandler
 
@@ -97,18 +98,17 @@ class DashboardHandler(BaseHTTPRequestHandler):
         elif url_path == "/api/upload":
             content_type = self.headers.get("Content-Type", "")
             if "multipart/form-data" in content_type:
-                form = cgi.FieldStorage(
-                    fp=self.rfile,
-                    headers=self.headers,
-                    environ={"REQUEST_METHOD": "POST", "CONTENT_TYPE": self.headers["Content-Type"]}
-                )
-                if "file" in form:
-                    file_item = form["file"]
-                    file_bytes = file_item.file.read()
-                    uploader = MandiUploadService()
-                    res = uploader.process_uploaded_file(io.BytesIO(file_bytes))
-                    self._send_json(res)
-                    return
+                content_length = int(self.headers.get("Content-Length", 0))
+                body = self.rfile.read(content_length)
+                raw_msg = f"Content-Type: {content_type}\r\nMIME-Version: 1.0\r\n\r\n".encode("utf-8") + body
+                msg = BytesParser(policy=default).parsebytes(raw_msg)
+                for part in msg.iter_parts():
+                    if part.get_filename() or part.get_param("name", header="content-disposition") == "file":
+                        file_bytes = part.get_payload(decode=True)
+                        uploader = MandiUploadService()
+                        res = uploader.process_uploaded_file(io.BytesIO(file_bytes))
+                        self._send_json(res)
+                        return
             self._send_json({"success": False, "message": "No file uploaded"}, 400)
 
         else:

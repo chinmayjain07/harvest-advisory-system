@@ -1,0 +1,16 @@
+mode,profile,alternative,topsis_score,rank
+Mode A (Crop Selection),Balanced (Base),Onion,0.672,1
+Mode A (Crop Selection),Balanced (Base),Tomato,0.3673,2
+Mode A (Crop Selection),Balanced (Base),Potato,0.2743,3
+Mode A (Crop Selection),Risk-Averse,Onion,0.8127,1
+Mode A (Crop Selection),Risk-Averse,Potato,0.6077,2
+Mode A (Crop Selection),Risk-Averse,Tomato,0.199,3
+Mode A (Crop Selection),Profit-Maximizer,Onion,0.7259,1
+Mode A (Crop Selection),Profit-Maximizer,Tomato,0.3204,2
+Mode A (Crop Selection),Profit-Maximizer,Potato,0.0779,3
+Mode A (Crop Selection),Climate-Resilient,Onion,0.8439,1
+Mode A (Crop Selection),Climate-Resilient,Tomato,0.3769,2
+Mode A (Crop Selection),Climate-Resilient,Potato,0.1989,3
+Mode A (Crop Selection),Smallholder Liquidity,Onion,0.7601,1
+Mode A (Crop Selection),Smallholder Liquidity,Potato,0.3624,2
+Mode A (Crop Selection),Smallholder Liquidity,Tomato,0.2718,3

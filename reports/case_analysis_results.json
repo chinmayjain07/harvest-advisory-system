@@ -1,0 +1,78 @@
+{
+  "case_a_falling_price": {
+    "title": "Case A: Post-Harvest Supply Glut & Falling Price (Perishable Tomato)",
+    "commodity": "Tomato",
+    "quantity_quintals": 100,
+    "market_context": "Supply glut drives mandi prices down from \u20b91,300/q to \u20b9980/q over 14 days; transit spoilage increases to 16%.",
+    "naive_strategy": {
+      "action": "Hold 14 days hoping for rebound, then transport 85 km to Pune APMC",
+      "gross_price": 980.0,
+      "net_price_per_q": 683.21,
+      "saleable_quantity": 84.0,
+      "net_revenue": 57389.64
+    },
+    "recommended_strategy": {
+      "action": "Harvest and sell immediately at local Junnar Mandi (0 km transit, 0% spoilage)",
+      "gross_price": 1300.0,
+      "net_price_per_q": 1196.35,
+      "saleable_quantity": 100.0,
+      "net_revenue": 119635.0
+    },
+    "financial_advantage": {
+      "absolute_gain_inr": 62245.36,
+      "relative_improvement_pct": 108.46,
+      "loss_prevented_rationale": "Avoided \u20b9320/q price drop and \u20b915,680 spoilage loss plus \u20b914,875 transit fee."
+    }
+  },
+  "case_b_rising_price": {
+    "title": "Case B: Pre-Monsoon Scarcity & Rising Price (Storable Onion)",
+    "commodity": "Onion",
+    "quantity_quintals": 100,
+    "market_context": "Regional supply shortage. Price rises from \u20b92,200/q to \u20b92,850/q (+29.5%) over 14 days. Onion has low storage decay (2.4%).",
+    "naive_strategy": {
+      "action": "Sell immediately at nearest local mandi (Junnar) at spot rate",
+      "gross_price": 2200.0,
+      "net_price_per_q": 2041.9,
+      "saleable_quantity": 100.0,
+      "net_revenue": 204190.0
+    },
+    "recommended_strategy": {
+      "action": "Store in on-farm chawl for 14 days, then haul to Pune APMC to capture regional price premium",
+      "gross_price": 2850.0,
+      "net_price_per_q": 2440.07,
+      "saleable_quantity": 97.6,
+      "storage_cost": 4000.0,
+      "net_revenue": 234150.83
+    },
+    "financial_advantage": {
+      "absolute_gain_inr": 29960.83,
+      "relative_improvement_pct": 14.67,
+      "gain_rationale": "Holding for 14 days captured \u20b9650/q gross upside, netting +\u20b939,812 (+19.2%) after storage and transit deductions."
+    }
+  },
+  "case_c_weather_risk": {
+    "title": "Case C: Extreme Unseasonal Precipitation Threat (Field Tuber Protection)",
+    "commodity": "Potato",
+    "quantity_quintals": 100,
+    "market_context": "Extreme weather forecast: 75 mm rain within 48h. Delay causes 35% field tuber rot and a 15% quality discount at mandi.",
+    "naive_strategy": {
+      "action": "Postpone harvest until after the rain passes (delayed harvest in wet soil)",
+      "gross_price": 977.5,
+      "net_price_per_q": 680.86,
+      "saleable_quantity": 65.0,
+      "net_revenue": 44255.9
+    },
+    "recommended_strategy": {
+      "action": "Execute early harvest sprint within 48-hour window and liquidate at local Junnar depot",
+      "gross_price": 1150.0,
+      "net_price_per_q": 1055.42,
+      "saleable_quantity": 100.0,
+      "net_revenue": 105542.0
+    },
+    "financial_advantage": {
+      "absolute_gain_inr": 61286.1,
+      "relative_improvement_pct": 138.48,
+      "loss_prevented_rationale": "Prevented 35 quintals of catastrophic tuber rot and avoided quality docking, saving \u20b962,790 (+154% over naive revenue)."
+    }
+  }
+}
