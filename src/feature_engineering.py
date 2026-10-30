@@ -137,6 +137,23 @@ def build_crop_feature_matrix(
 
     return df_continuous
 
+FEATURE_COLUMNS = [
+    'price_lag_1', 'price_lag_2', 'price_lag_3', 'price_lag_7', 'price_lag_14', 'price_lag_21', 'price_lag_30',
+    'price_roll_mean_7', 'price_roll_std_7', 'price_roll_min_7', 'price_roll_max_7',
+    'price_roll_mean_14', 'price_roll_std_14', 'price_roll_min_14', 'price_roll_max_14',
+    'price_roll_mean_30', 'price_roll_std_30', 'price_roll_min_30', 'price_roll_max_30',
+    'price_pct_change_7', 'price_pct_change_14',
+    'month', 'day_of_week', 'day_of_year',
+    'sin_month', 'cos_month', 'sin_day', 'cos_day',
+    'is_monsoon', 'is_winter', 'is_summer',
+    'temp_max', 'temp_min', 'temp_mean', 'temp_diurnal_range',
+    'precipitation', 'relative_humidity', 'wind_speed_max',
+    'rain_7d_sum', 'rain_14d_sum', 'rain_30d_sum',
+    'temp_7d_mean', 'humidity_7d_mean',
+    'extreme_heat_day', 'heavy_rain_day',
+    'heat_days_last_14d', 'heavy_rain_days_last_14d'
+]
+
 def get_feature_columns() -> List[str]:
     """Returns the standardized list of predictor feature names."""
     return [

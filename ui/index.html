@@ -1,0 +1,873 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Intelligent Harvest Advisory | Phase 4 Pipeline Control</title>
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        :root {
+            --bg-base: #090d16;
+            --bg-card: rgba(18, 24, 38, 0.7);
+            --bg-card-hover: rgba(26, 34, 52, 0.85);
+            --border-glass: rgba(255, 255, 255, 0.08);
+            --border-glow: rgba(16, 185, 129, 0.3);
+            --accent-green: #10b981;
+            --accent-green-glow: rgba(16, 185, 129, 0.2);
+            --accent-blue: #38bdf8;
+            --accent-purple: #a855f7;
+            --accent-amber: #f59e0b;
+            --text-primary: #f8fafc;
+            --text-secondary: #94a3b8;
+            --text-muted: #64748b;
+            --radius-card: 16px;
+            --radius-sm: 8px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+
+        body {
+            background: radial-gradient(circle at 10% 10%, #0d1527 0%, #060911 100%);
+            color: var(--text-primary);
+            min-height: 100vh;
+            padding: 24px;
+            overflow-x: hidden;
+        }
+
+        /* Ambient Glow */
+        .ambient-glow {
+            position: fixed;
+            top: -150px;
+            right: -100px;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(16, 185, 129, 0.15), transparent 70%);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .ambient-glow-2 {
+            position: fixed;
+            bottom: -150px;
+            left: -100px;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(56, 189, 248, 0.12), transparent 70%);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .app-container {
+            max-width: 1360px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+
+        /* Glassmorphism utility */
+        .glass-panel {
+            background: var(--bg-card);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid var(--border-glass);
+            border-radius: var(--radius-card);
+            padding: 24px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+            transition: all 0.25s ease;
+        }
+
+        .glass-panel:hover {
+            border-color: rgba(255, 255, 255, 0.14);
+        }
+
+        /* Header */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+
+        .logo-wrap {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+
+        .badge-icon {
+            width: 44px;
+            height: 44px;
+            border-radius: 12px;
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 22px;
+            box-shadow: 0 0 20px rgba(16, 185, 129, 0.4);
+        }
+
+        h1 {
+            font-family: 'Outfit', sans-serif;
+            font-size: 24px;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+        }
+
+        .subtitle {
+            font-size: 13px;
+            color: var(--text-secondary);
+            margin-top: 2px;
+        }
+
+        .header-meta {
+            display: flex;
+            gap: 12px;
+            align-items: center;
+        }
+
+        .status-chip {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 14px;
+            border-radius: 20px;
+            background: rgba(16, 185, 129, 0.1);
+            border: 1px solid rgba(16, 185, 129, 0.3);
+            font-size: 12px;
+            font-weight: 600;
+            color: #34d399;
+        }
+
+        .pulse-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #10b981;
+            box-shadow: 0 0 10px #10b981;
+            animation: pulse 1.8s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.4); opacity: 0.6; }
+        }
+
+        /* Grid Layout */
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: 1fr 340px;
+            gap: 24px;
+        }
+
+        @media (max-width: 1024px) {
+            .dashboard-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Simulation Controller */
+        .sim-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 16px;
+        }
+
+        .section-title {
+            font-family: 'Outfit', sans-serif;
+            font-size: 18px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .sim-progress-bar-wrap {
+            height: 10px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            overflow: hidden;
+            margin-bottom: 14px;
+            border: 1px solid rgba(255, 255, 255, 0.06);
+        }
+
+        .sim-progress-bar {
+            height: 100%;
+            width: 0%;
+            background: linear-gradient(90deg, #10b981, #38bdf8);
+            border-radius: 10px;
+            transition: width 0.4s ease;
+            box-shadow: 0 0 12px rgba(16, 185, 129, 0.5);
+        }
+
+        .sim-controls {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        button {
+            cursor: pointer;
+            border: none;
+            outline: none;
+            font-weight: 600;
+            font-size: 13px;
+            padding: 11px 20px;
+            border-radius: var(--radius-sm);
+            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            color: #ffffff;
+            box-shadow: 0 4px 14px rgba(16, 185, 129, 0.35);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 6px 20px rgba(16, 185, 129, 0.5);
+        }
+
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.06);
+            color: var(--text-primary);
+            border: 1px solid var(--border-glass);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.12);
+        }
+
+        .btn-sync {
+            background: linear-gradient(135deg, #38bdf8 0%, #0284c7 100%);
+            color: #ffffff;
+            box-shadow: 0 4px 14px rgba(56, 189, 248, 0.35);
+        }
+
+        .btn-sync:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 6px 20px rgba(56, 189, 248, 0.5);
+        }
+
+        /* Crop Cards */
+        .crop-cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 18px;
+            margin-top: 16px;
+        }
+
+        .crop-card {
+            background: rgba(14, 20, 32, 0.85);
+            border: 1px solid var(--border-glass);
+            border-radius: 14px;
+            padding: 20px;
+            transition: all 0.25s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .crop-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, var(--accent-color, #10b981), transparent);
+        }
+
+        .crop-card:hover {
+            transform: translateY(-3px);
+            border-color: rgba(255, 255, 255, 0.15);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4);
+        }
+
+        .crop-head {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
+        }
+
+        .crop-name {
+            font-family: 'Outfit', sans-serif;
+            font-size: 18px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .current-price-wrap {
+            margin-bottom: 18px;
+        }
+
+        .price-label {
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--text-muted);
+        }
+
+        .current-price {
+            font-family: 'Outfit', sans-serif;
+            font-size: 28px;
+            font-weight: 700;
+            color: #ffffff;
+            margin-top: 2px;
+        }
+
+        .horizons-wrap {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .horizon-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 9px 12px;
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.04);
+            font-size: 13px;
+        }
+
+        .horizon-tag {
+            font-weight: 600;
+            color: var(--text-secondary);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .horizon-pred {
+            font-weight: 700;
+            font-family: 'Outfit', sans-serif;
+            color: #ffffff;
+        }
+
+        .horizon-model {
+            font-size: 10px;
+            color: var(--text-muted);
+            margin-top: 2px;
+            text-align: right;
+        }
+
+        /* Sidebar Panels */
+        .sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        /* Upload Zone */
+        .dropzone {
+            border: 2px dashed rgba(255, 255, 255, 0.15);
+            border-radius: var(--radius-sm);
+            padding: 24px 16px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            background: rgba(255, 255, 255, 0.02);
+        }
+
+        .dropzone:hover, .dropzone.dragover {
+            border-color: var(--accent-green);
+            background: rgba(16, 185, 129, 0.05);
+        }
+
+        .dropzone-icon {
+            font-size: 32px;
+            margin-bottom: 8px;
+        }
+
+        .dropzone-text {
+            font-size: 13px;
+            font-weight: 500;
+            color: var(--text-primary);
+        }
+
+        .dropzone-hint {
+            font-size: 11px;
+            color: var(--text-muted);
+            margin-top: 4px;
+        }
+
+        /* Live Activity Stream */
+        .stream-box {
+            height: 220px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            padding-right: 4px;
+        }
+
+        .stream-box::-webkit-scrollbar {
+            width: 4px;
+        }
+
+        .stream-box::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 4px;
+        }
+
+        .stream-item {
+            font-size: 12px;
+            padding: 8px 10px;
+            border-radius: 6px;
+            background: rgba(255, 255, 255, 0.03);
+            border-left: 3px solid var(--accent-blue);
+        }
+
+        .stream-time {
+            color: var(--text-muted);
+            font-size: 10px;
+        }
+
+        /* Toast notifications */
+        #toast {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            background: #1e293b;
+            color: #ffffff;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            padding: 12px 20px;
+            border-radius: 8px;
+            font-size: 13px;
+            font-weight: 500;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            z-index: 999;
+            transform: translateY(100px);
+            opacity: 0;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        #toast.show {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .chart-box {
+            margin-top: 18px;
+            height: 280px;
+            position: relative;
+        }
+    </style>
+</head>
+<body>
+    <div class="ambient-glow"></div>
+    <div class="ambient-glow-2"></div>
+
+    <div class="app-container">
+        <!-- Top Navigation / Header -->
+        <header class="glass-panel">
+            <div class="logo-wrap">
+                <div class="badge-icon">🌾</div>
+                <div>
+                    <h1>Intelligent Harvest Advisory & Mandi Engine</h1>
+                    <div class="subtitle">Phase 4 Automation Pipeline • 36 Ensemble Models Active (RF, XGB, LGBM, Stacking)</div>
+                </div>
+            </div>
+            <div class="header-meta">
+                <div class="status-chip">
+                    <span class="pulse-dot"></span>
+                    <span id="pipeline-status">Engine Running</span>
+                </div>
+                <div class="status-chip" style="background: rgba(56, 189, 248, 0.1); border-color: rgba(56, 189, 248, 0.3); color: #38bdf8;">
+                    <span>📍 Market: Pune APMC</span>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Body Grid -->
+        <div class="dashboard-grid">
+            <!-- Left Column: Controls & Forecast Visualizer -->
+            <div style="display: flex; flex-direction: column; gap: 24px;">
+                <!-- Replay & Simulation Control Panel -->
+                <div class="glass-panel">
+                    <div class="sim-header">
+                        <div>
+                            <div class="section-title">
+                                <span>⏱️ 60-Day Historical Replay Simulator</span>
+                            </div>
+                            <div class="subtitle" id="sim-date-display">Simulation Progress: Day 1 of 60</div>
+                        </div>
+                        <div id="sim-pct-tag" style="font-size: 14px; font-weight: 700; color: #38bdf8;">0%</div>
+                    </div>
+
+                    <div class="sim-progress-bar-wrap">
+                        <div class="sim-progress-bar" id="sim-progress-bar"></div>
+                    </div>
+
+                    <div class="sim-controls">
+                        <button class="btn-primary" id="btn-step" onclick="stepSimulation()">
+                            <span>⏩ Step Forward 1 Day</span>
+                        </button>
+                        <button class="btn-secondary" id="btn-reset" onclick="resetSimulation()">
+                            <span>🔄 Reset to Day 1</span>
+                        </button>
+                        <button class="btn-sync" id="btn-sync" onclick="runDailySync()">
+                            <span>⚡ Run Daily Sync (Fetch & Ingest)</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Forecast Cards -->
+                <div class="glass-panel">
+                    <div class="section-title">
+                        <span>📈 Incremental Multi-Horizon Forecasts</span>
+                    </div>
+                    <div class="subtitle">Generated using your 36 ensemble regressors for 7, 14, and 30-day decision horizons</div>
+
+                    <div class="crop-cards-grid" id="crop-cards-container">
+                        <!-- Populated by JavaScript -->
+                    </div>
+
+                    <!-- Comparison Chart -->
+                    <div class="chart-box">
+                        <canvas id="forecastChart"></canvas>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Column: Sidebar (Upload & Live Event Stream) -->
+            <div class="sidebar">
+                <!-- Manual CSV / Excel Upload Card -->
+                <div class="glass-panel">
+                    <div class="section-title" style="margin-bottom: 6px;">
+                        <span>📂 Manual Data Ingestion</span>
+                    </div>
+                    <div class="subtitle" style="margin-bottom: 14px;">Upload Agmarknet or MSAMB CSV/Excel exports</div>
+
+                    <div class="dropzone" id="dropzone" onclick="document.getElementById('file-input').click()">
+                        <div class="dropzone-icon">📥</div>
+                        <div class="dropzone-text">Click or Drag & Drop File</div>
+                        <div class="dropzone-hint">Supports .csv or .xlsx (Auto-cleans APMC tags & deduplicates)</div>
+                        <input type="file" id="file-input" style="display: none;" accept=".csv,.xlsx,.xls" onchange="handleFileUpload(this.files[0])">
+                    </div>
+                </div>
+
+                <!-- Live Pipeline Audit Log -->
+                <div class="glass-panel">
+                    <div class="section-title" style="margin-bottom: 12px;">
+                        <span>📋 Pipeline Event Stream</span>
+                    </div>
+                    <div class="stream-box" id="event-stream">
+                        <div class="stream-item">
+                            <div>System initialized and connected to database (75,893 records).</div>
+                            <div class="stream-time">Just now</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Notification -->
+    <div id="toast">Action completed</div>
+
+    <script>
+        let chartInstance = null;
+
+        function showToast(msg) {
+            const toast = document.getElementById('toast');
+            toast.innerText = msg;
+            toast.classList.add('show');
+            setTimeout(() => toast.classList.remove('show'), 3500);
+        }
+
+        function addLog(msg) {
+            const stream = document.getElementById('event-stream');
+            const item = document.createElement('div');
+            item.className = 'stream-item';
+            const time = new Date().toLocaleTimeString();
+            item.innerHTML = `<div>${msg}</div><div class="stream-time">${time}</div>`;
+            stream.prepend(item);
+        }
+
+        async function fetchForecasts() {
+            try {
+                const res = await fetch('/api/forecasts');
+                const data = await res.json();
+                renderForecasts(data);
+                updateChart(data);
+            } catch (err) {
+                console.error('Error fetching forecasts:', err);
+            }
+        }
+
+        async function fetchSimStatus() {
+            try {
+                const res = await fetch('/api/simulation/status');
+                const status = await res.json();
+                updateSimUI(status);
+            } catch (err) {
+                console.error('Error fetching sim status:', err);
+            }
+        }
+
+        function updateSimUI(status) {
+            const day = status.simulation_day || 1;
+            const total = status.total_days || 60;
+            const dateStr = status.current_date || 'N/A';
+            const pct = Math.min(100, Math.round((day / total) * 100));
+
+            document.getElementById('sim-date-display').innerText = `Active Date: ${dateStr} • Progress: Day ${day} of ${total}`;
+            document.getElementById('sim-pct-tag').innerText = `${pct}%`;
+            document.getElementById('sim-progress-bar').style.width = `${pct}%`;
+        }
+
+        function renderForecasts(data) {
+            const container = document.getElementById('crop-cards-container');
+            container.innerHTML = '';
+
+            const icons = { 'Potato': '🥔', 'Tomato': '🍅', 'Onion': '🧅' };
+            const colors = { 'Potato': '#f59e0b', 'Tomato': '#ef4444', 'Onion': '#a855f7' };
+
+            for (const [crop, info] of Object.entries(data.commodities || {})) {
+                const card = document.createElement('div');
+                card.className = 'crop-card';
+                card.style.setProperty('--accent-color', colors[crop] || '#10b981');
+
+                const h7 = info.forecasts?.h7 || {};
+                const h14 = info.forecasts?.h14 || {};
+                const h30 = info.forecasts?.h30 || {};
+
+                card.innerHTML = `
+                    <div class="crop-head">
+                        <div class="crop-name">
+                            <span>${icons[crop] || '🌱'}</span>
+                            <span>${crop}</span>
+                        </div>
+                        <span style="font-size: 11px; color: var(--text-muted);">${info.latest_date || ''}</span>
+                    </div>
+
+                    <div class="current-price-wrap">
+                        <div class="price-label">Current Modal Price</div>
+                        <div class="current-price">₹${Number(info.current_price).toLocaleString()} <span style="font-size: 14px; font-weight: 500; color: var(--text-secondary);">/ quintal</span></div>
+                    </div>
+
+                    <div class="horizons-wrap">
+                        <div class="horizon-row">
+                            <div class="horizon-tag">📅 7 Days</div>
+                            <div>
+                                <div class="horizon-pred">₹${Number(h7.predicted_modal_price || 0).toLocaleString()}</div>
+                                <div class="horizon-model">${h7.model_used || ''}</div>
+                            </div>
+                        </div>
+
+                        <div class="horizon-row">
+                            <div class="horizon-tag">📅 14 Days</div>
+                            <div>
+                                <div class="horizon-pred">₹${Number(h14.predicted_modal_price || 0).toLocaleString()}</div>
+                                <div class="horizon-model">${h14.model_used || ''}</div>
+                            </div>
+                        </div>
+
+                        <div class="horizon-row">
+                            <div class="horizon-tag">📅 30 Days</div>
+                            <div>
+                                <div class="horizon-pred">₹${Number(h30.predicted_modal_price || 0).toLocaleString()}</div>
+                                <div class="horizon-model">${h30.model_used || ''}</div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                container.appendChild(card);
+            }
+        }
+
+        function updateChart(data) {
+            const ctx = document.getElementById('forecastChart').getContext('2d');
+            const labels = ['Current Modal Price', '+7 Days Forecast', '+14 Days Forecast', '+30 Days Forecast'];
+
+            const datasets = [];
+            const palette = {
+                'Potato': { color: '#f59e0b', bg: 'rgba(245, 158, 11, 0.15)' },
+                'Tomato': { color: '#ef4444', bg: 'rgba(239, 68, 68, 0.15)' },
+                'Onion': { color: '#a855f7', bg: 'rgba(168, 85, 247, 0.15)' }
+            };
+
+            for (const [crop, info] of Object.entries(data.commodities || {})) {
+                const conf = palette[crop] || { color: '#10b981', bg: 'rgba(16, 185, 129, 0.15)' };
+                datasets.push({
+                    label: `${crop} (Rs/q)`,
+                    data: [
+                        info.current_price,
+                        info.forecasts?.h7?.predicted_modal_price,
+                        info.forecasts?.h14?.predicted_modal_price,
+                        info.forecasts?.h30?.predicted_modal_price
+                    ],
+                    borderColor: conf.color,
+                    backgroundColor: conf.bg,
+                    borderWidth: 2.5,
+                    tension: 0.3,
+                    fill: false,
+                    pointBackgroundColor: conf.color,
+                    pointRadius: 5
+                });
+            }
+
+            if (chartInstance) {
+                chartInstance.data.datasets = datasets;
+                chartInstance.update();
+            } else {
+                chartInstance = new Chart(ctx, {
+                    type: 'line',
+                    data: { labels, datasets },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                            legend: { labels: { color: '#94a3b8', font: { family: 'Plus Jakarta Sans', size: 12 } } }
+                        },
+                        scales: {
+                            x: { grid: { color: 'rgba(255, 255, 255, 0.05)' }, ticks: { color: '#94a3b8' } },
+                            y: {
+                                grid: { color: 'rgba(255, 255, 255, 0.05)' },
+                                ticks: {
+                                    color: '#94a3b8',
+                                    callback: v => '₹' + v
+                                }
+                            }
+                        }
+                    }
+                });
+            }
+        }
+
+        async function stepSimulation() {
+            const btn = document.getElementById('btn-step');
+            btn.disabled = true;
+            btn.innerHTML = '<span>⏳ Stepping...</span>';
+            try {
+                const res = await fetch('/api/simulation/step', { method: 'POST' });
+                const json = await res.json();
+                if (json.status === 'success') {
+                    showToast(`Day ${json.simulation_day} stepped: Revealed ${json.records_revealed} records!`);
+                    addLog(`Replay simulation advanced to Day ${json.simulation_day} (${json.current_date}). ${json.records_revealed} quotes revealed.`);
+                    await fetchSimStatus();
+                    await fetchForecasts();
+                } else {
+                    showToast(json.message || 'Simulation completed');
+                    addLog(json.message);
+                }
+            } catch (err) {
+                showToast('Failed to step simulation');
+            } finally {
+                btn.disabled = false;
+                btn.innerHTML = '<span>⏩ Step Forward 1 Day</span>';
+            }
+        }
+
+        async function resetSimulation() {
+            try {
+                const res = await fetch('/api/simulation/reset', { method: 'POST' });
+                const json = await res.json();
+                showToast('Simulation reset to Day 1');
+                addLog('Simulation reset back to Day 1.');
+                await fetchSimStatus();
+                await fetchForecasts();
+            } catch (err) {
+                showToast('Reset failed');
+            }
+        }
+
+        async function runDailySync() {
+            const btn = document.getElementById('btn-sync');
+            btn.disabled = true;
+            btn.innerHTML = '<span>⚡ Syncing...</span>';
+            try {
+                const res = await fetch('/api/sync', { method: 'POST' });
+                const json = await res.json();
+                showToast(`Daily Sync: ${json.status.toUpperCase()} (${json.details || ''})`);
+                addLog(`Daily sync executed: Source=${json.source}, Records added=${json.records_added}`);
+                await fetchSimStatus();
+                await fetchForecasts();
+            } catch (err) {
+                showToast('Sync failed');
+            } finally {
+                btn.disabled = false;
+                btn.innerHTML = '<span>⚡ Run Daily Sync (Fetch & Ingest)</span>';
+            }
+        }
+
+        async function handleFileUpload(file) {
+            if (!file) return;
+            const formData = new FormData();
+            formData.append('file', file);
+
+            showToast(`Uploading ${file.name}...`);
+            addLog(`Initiated upload of ${file.name}`);
+
+            try {
+                const res = await fetch('/api/upload', {
+                    method: 'POST',
+                    body: formData
+                });
+                const result = await res.json();
+                if (result.success) {
+                    showToast(`Upload Success! ${result.rows_inserted} inserted, ${result.duplicates_skipped} duplicates.`);
+                    addLog(`File parsed: ${result.rows_processed} rows. Inserted: ${result.rows_inserted}, Skipped: ${result.duplicates_skipped}`);
+                    await fetchForecasts();
+                } else {
+                    showToast(`Upload failed: ${result.message}`);
+                    addLog(`Upload error: ${result.message}`);
+                }
+            } catch (err) {
+                showToast('Upload error');
+                addLog(`Upload exception: ${err.message}`);
+            }
+        }
+
+        // Setup Drag & Drop
+        const dropzone = document.getElementById('dropzone');
+        ['dragenter', 'dragover'].forEach(e => {
+            dropzone.addEventListener(e, (ev) => {
+                ev.preventDefault();
+                dropzone.classList.add('dragover');
+            });
+        });
+        ['dragleave', 'drop'].forEach(e => {
+            dropzone.addEventListener(e, (ev) => {
+                ev.preventDefault();
+                dropzone.classList.remove('dragover');
+            });
+        });
+        dropzone.addEventListener('drop', (ev) => {
+            if (ev.dataTransfer.files.length) {
+                handleFileUpload(ev.dataTransfer.files[0]);
+            }
+        });
+
+        // Initial Load
+        fetchSimStatus();
+        fetchForecasts();
+    </script>
+</body>
+</html>

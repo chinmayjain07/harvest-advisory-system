@@ -1,0 +1,114 @@
+{
+  "updated_at": "2026-10-30T22:22:41.910208",
+  "market": "Pune",
+  "commodities": {
+    "Potato": {
+      "current_price": 1150.0,
+      "latest_date": "2026-10-30",
+      "forecasts": {
+        "h7": {
+          "horizon_days": 7,
+          "target_date": "2026-11-06",
+          "predicted_modal_price": 1102.31,
+          "model_used": "potato_h7_lgbm",
+          "confidence_interval": [
+            1029.19,
+            1175.43
+          ]
+        },
+        "h14": {
+          "horizon_days": 14,
+          "target_date": "2026-11-13",
+          "predicted_modal_price": 1065.75,
+          "model_used": "potato_h14_lgbm",
+          "confidence_interval": [
+            977.65,
+            1153.85
+          ]
+        },
+        "h30": {
+          "horizon_days": 30,
+          "target_date": "2026-11-29",
+          "predicted_modal_price": 1165.28,
+          "model_used": "potato_h30_lgbm",
+          "confidence_interval": [
+            1025.45,
+            1305.11
+          ]
+        }
+      }
+    },
+    "Tomato": {
+      "current_price": 1300.0,
+      "latest_date": "2026-10-30",
+      "forecasts": {
+        "h7": {
+          "horizon_days": 7,
+          "target_date": "2026-11-06",
+          "predicted_modal_price": 1792.36,
+          "model_used": "tomato_h7_lgbm",
+          "confidence_interval": [
+            1673.47,
+            1911.25
+          ]
+        },
+        "h14": {
+          "horizon_days": 14,
+          "target_date": "2026-11-13",
+          "predicted_modal_price": 1810.66,
+          "model_used": "tomato_h14_lgbm",
+          "confidence_interval": [
+            1660.98,
+            1960.34
+          ]
+        },
+        "h30": {
+          "horizon_days": 30,
+          "target_date": "2026-11-29",
+          "predicted_modal_price": 1366.61,
+          "model_used": "tomato_h30_lgbm",
+          "confidence_interval": [
+            1202.62,
+            1530.6
+          ]
+        }
+      }
+    },
+    "Onion": {
+      "current_price": 2200.0,
+      "latest_date": "2026-10-30",
+      "forecasts": {
+        "h7": {
+          "horizon_days": 7,
+          "target_date": "2026-11-06",
+          "predicted_modal_price": 2748.94,
+          "model_used": "onion_h7_lgbm",
+          "confidence_interval": [
+            2566.59,
+            2931.29
+          ]
+        },
+        "h14": {
+          "horizon_days": 14,
+          "target_date": "2026-11-13",
+          "predicted_modal_price": 2588.71,
+          "model_used": "onion_h14_lgbm",
+          "confidence_interval": [
+            2374.71,
+            2802.71
+          ]
+        },
+        "h30": {
+          "horizon_days": 30,
+          "target_date": "2026-11-29",
+          "predicted_modal_price": 2831.64,
+          "model_used": "onion_h30_lgbm",
+          "confidence_interval": [
+            2491.84,
+            3171.44
+          ]
+        }
+      }
+    }
+  }
+}
